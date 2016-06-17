@@ -1,0 +1,18 @@
+import React, { Component } from 'react';
+import {Button, Footer, Header, TabBar, TabView} from 'ui/Components';
+
+export default class extends Component {
+  render() {
+    return (
+      <div className="window">
+        <Header />
+        
+        <TabView id="foo" />
+        <TabView id="bar" />
+        <Footer>
+            <Button label="Save" />
+        </Footer>
+      </div>
+    );
+  }
+}

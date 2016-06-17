@@ -1,0 +1,93 @@
+import React, {Component} from "react";
+
+
+export class Button extends Component {
+
+    static propTypes = {
+        label: React.PropTypes.string.isRequired
+    };
+
+    render () {
+        return <button className="btn btn-default">
+        {this.props.label}
+        </button>
+    }
+}
+
+
+export class Header extends Component {
+
+    static propTypes = {
+        children: React.PropTypes.object
+    };
+
+    static defaultProps = {
+        children: null
+    };
+
+    render() {
+        return <header className="toolbar toolbar-header">
+            <h1 className="title">Header</h1>
+            <div className="toolbar-actions">
+            {this.props.children}
+            </div>
+        </header>;
+    }
+}
+
+export class Footer extends Component {
+
+    static propTypes = {
+        children: React.PropTypes.object
+    };
+
+    static defaultProps = {
+        children: null
+    };
+
+    render() {
+        return <footer className="toolbar toolbar-footer">
+            <div className="toolbar-actions">
+            {this.props.children}
+            </div>
+        </footer>;
+    }
+}
+
+class TabBar extends Component {
+
+    static propTypes = {
+        tabs: React.PropTypes.arrayOf(React.PropTypes.string)
+    };
+
+    onTabCloseClick(e) {
+        console.log(e.target.id);
+    }
+
+    onTabPressed (e, id) {
+        console.log(arguments);
+    }
+
+  render () {
+    return <div className="tab-group">
+      {this.props.tabs.map((itm, id) => <div className="tab-item" key={id} onClick={(e) => this.onTabPressed(e, id)}>
+        <span id={`tab-id-${id}`} className="icon icon-cancel icon-close-tab" onClick={this.onTabCloseClick.bind(this)}></span>
+        {itm}
+      </div>)
+      }
+      </div>
+  }
+}
+
+class TabView extends Component {
+
+    static propTypes = {
+        tabs: React.PropTypes.arrayOf(React.PropTypes.string)
+    };
+
+    render () {
+        return <div className="window-content">
+            {this.props.children}
+        </div>
+    }
+}
